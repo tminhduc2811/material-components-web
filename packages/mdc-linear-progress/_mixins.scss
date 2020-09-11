@@ -133,13 +133,20 @@
     @include indeterminate_($query: $query);
     @include reversed_($query: $query);
 
-    &--closed {
+    &--closed,
+    &--closed-animation-off {
       @include feature-targeting.targets($feat-structure) {
         opacity: 0;
       }
+    }
 
-      @include feature-targeting.targets($feat-animation) {
-        animation: none;
+    &--closed-animation-off.mdc-linear-progress--indeterminate {
+      .mdc-linear-progress__buffer-dots,
+      .mdc-linear-progress__bar,
+      .mdc-linear-progress__bar .mdc-linear-progress__bar-inner {
+        @include feature-targeting.targets($feat-animation) {
+          animation: none;
+        }
       }
     }
   }
